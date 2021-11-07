@@ -42,9 +42,12 @@
 
 #db-[99:101]-node.example.com
 
-[serveurs]
-server1 ansible_host=192.168.211.131
-server2 ansible_host=192.168.211.140
-
 [all:vars]
-ansible_python_interpreter: /usr/bin/python3
+ansible_user='tony'
+ansible_become=yes
+ansible_become_method=sudo
+ansible_python_interpreter='/usr/bin/python3'
+
+[servers]
+server1 ansible_host=192.168.211.131 ansible_ssh_user=tony ansible_become_pass='{{ become1_pass }}'
+server2 ansible_host=192.168.211.141 ansible_ssh_user=tony ansible_become_pass='{{ become2_pass }}'
